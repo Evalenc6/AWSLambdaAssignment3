@@ -3,36 +3,37 @@
     <meta charset='UTF-8'/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <Title>Class Viewer</Title>
-
+    <link rel="stylesheet" href="./styles/index.css"/>
 </head>
 
 <body>
     <h1>Welcome Student</h1>
-    <h3>Put in your Student ID and grade for this class to see the average for the class</h3>
-    <div id="studentForm">
-        <form id="gradeForm">
-            <label for="studentID">Student ID</label>
-            <input id="studentID" name="studentID" type="text"/>
-            <label for="grade">Grade</label>
-            <input id="grade" name="grade" type="number">
-            <button id="submitGrade" type="submit">Submit</button>
-        </form>
-    </div>
+    <div id="pageContents">
+        <h3>Put in your Student ID and Grade for this class to be added to the average</h3>
+        <div id="studentForm">
+            <form id="gradeForm">
+                <label for="studentID">Student ID</label><br>
+                <input id="studentID" name="studentID" type="text"/><br>
+                <label for="grade">Grade</label><br>
+                <input id="grade" name="grade" type="number"><br>
+                <button id="submitGrade" type="submit">Submit</button>
+            </form>
+        </div>
 
-    <div id="tableDiv">
-        <table id="studentTable">
-            <thead>
-                <tr>
-                    <th>Student ID</th>
-                    <th>Grade</th>
-                    <th>Average</th>
-                </tr>
-            </thead>
-            <tbody id="studentTableBody">
-            </tbody>
-        </table>
+        <div id="tableDiv">
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Grade</th>
+                        <th>Average</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                </tbody>
+            </table>
+        </div>
     </div>
-
     <script src="./scripts/helpers.js" defer></script>
 
 </body>

@@ -1,0 +1,114 @@
+/* ===== Global Styles ===== */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f6fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 25px;
+}
+
+/* ===== Page Layout ===== */
+#pageContents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#pageContents h3 {
+    text-align: center;
+    max-width: 600px;
+    font-weight: normal;
+    margin-bottom: 25px;
+}
+
+/* ===== Student Form Card ===== */
+#studentForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+#gradeForm {
+    width: 100%;
+}
+
+#gradeForm label {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+#gradeForm input {
+    width: 95%;
+    height: 38px;
+    margin-top: 6px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* Submit Button */
+#gradeForm button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    background-color: #4a69bd;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#gradeForm button:hover {
+    background-color: #3b55a1;
+}
+
+/* ===== Table Section ===== */
+#tableDiv {
+    width: 90%;
+    max-width: 700px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Table Styling */
+#studentTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+}
+
+#studentTable th, #studentTable td {
+    padding: 12px;
+    text-align: center;
+}
+
+#studentTable th {
+    background-color: #4a69bd;
+    color: white;
+}
+
+#studentTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#studentTable tr:hover {
+    background-color: #e3e8ff;
+}
