@@ -12,7 +12,7 @@ async function submitGrades(){
             const studentID = formData.get("studentID");
             const grade = formData.get("grade");
 
-            await fetch("https://li0l0grfo7.execute-api.us-east-2.amazonaws.com/grades",{
+            await fetch("https://li0l0grfo7.execute-api.us-east-2.amazonaws.com/storeGrades",{
                 method:"POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
@@ -38,7 +38,7 @@ async function showGrades(){
     let totalGrades=0;
 
     try{
-        const res = await fetch("https://li0l0grfo7.execute-api.us-east-2.amazonaws.com/grades");
+        const res = await fetch("https://li0l0grfo7.execute-api.us-east-2.amazonaws.com/getGrades");
         const data = await res.json();
     
         data.forEach(item=>{
