@@ -8,54 +8,49 @@ async function submitGrades(){
         event.preventDefault();
 
         try{
-            
             const formData = new FormData(this);
-
-            console.log("This button got pressed for signing in with this data:\n");
             const studentID = formData.get("studentID");
             const grade = formData.get("grade");
-            console.log(studentID, ", ", grade);
-            const file= await fetch('./ExampleData/data.txt');
-            if(!file.ok){
-                throw new Error("File was not found");                
-            }
-            let contents = await file.text();
-            contents += "\n" + studentID + "," + grade;
-            console.log("Updated contents:\n", contents);
 
+            await fetch("https://li0l0grfo7.execute-api.us-east-2.amazonaws.com/grades",{
+                method:"POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                studentID: studentID,
+                grade: grade
+                })
+            });
+
+            alert("Grades have been submitted");
+            showGrades();
         }
         catch(error){
-            console.log("Erorr loading txt file: ", error)
-            return null;
+            console.log("Error Showing Grades: " + error);
         }
 
-    })
+    });
 }
 
 async function showGrades(){
     const tableBody = document.getElementById("studentTableBody");
-    let totalGrades=0;
-    try{
-        const file = await fetch('./ExampleData/data.txt');
-        if (!file.ok){
-            console.error("File Not Found");
-        }
-        let data = await file.text();
-        let cleanedData = [];
-        for(const items of data.split("\n")){
-            cleanedData.push(items.split(","));
-        }
+    tableBody.innerHTML = "";  
 
-        cleanedData.forEach(item=>{
+    let totalGrades=0;
+
+    try{
+        const res = await fetch("https://li0l0grfo7.execute-api.us-east-2.amazonaws.com/grades");
+        const data = await res.json();
+    
+        data.forEach(item=>{
             const row = document.createElement('tr');
 
             const studentIDCell = document.createElement('td');
-            studentIDCell.textContent = item[0];
+            studentIDCell.textContent = item.studentID;
 
             const gradeCell = document.createElement('td');
-            gradeCell.textContent = item[1];
+            gradeCell.textContent = item.grade;
             
-            totalGrades+=Number(item[1]);
+            totalGrades+=Number(item.grade);
 
             row.appendChild(studentIDCell);
             row.appendChild(gradeCell);
@@ -63,22 +58,21 @@ async function showGrades(){
             tableBody.appendChild(row);
         })
 
-        const row = document.createElement('tr');
+        const avgrow = document.createElement('tr');
         const emptyCell = document.createElement('td');
         const emptyCell2 = document.createElement('td');
-        row.appendChild(emptyCell);
-        row.appendChild(emptyCell2);
+        avgrow.appendChild(emptyCell);
+        avgrow.appendChild(emptyCell2);
 
         const averageCell = document.createElement('td');
-        let average = totalGrades/cleanedData.length
+        let average = totalGrades/data.length
 
         averageCell.textContent = average.toFixed(2);
-        row.appendChild(averageCell);
-        tableBody.appendChild(row);
+        avgrow.appendChild(averageCell);
+        tableBody.appendChild(avgrow);
     }
     catch(error){
-        console.log("Erorr loading txt file: ", error)
-        return null;
+        console.log("Erorr loading grades: ", error)
     }
 
 }
