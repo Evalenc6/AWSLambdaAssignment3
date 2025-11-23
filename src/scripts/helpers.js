@@ -40,7 +40,7 @@ async function showGrades(){
     try{
         const res = await fetch("https://li0l0grfo7.execute-api.us-east-2.amazonaws.com/getGrades");
         const data = await res.json();
-    
+        console.log(data);
         data.forEach(item=>{
             const row = document.createElement('tr');
 
